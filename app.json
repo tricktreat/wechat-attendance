@@ -1,0 +1,35 @@
+{
+  "pages": [
+    "pages/kcqd/kcqd",
+    "pages/setting/setting",
+    "pages/about/about",
+    "pages/bdxsxx/bdxsxx",
+    "pages/bdlsxx/bdlsxx"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "上课啦",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/kcqd/kcqd",
+        "text": "考勤",
+        "iconPath": "/images/tabicon2.png",
+        "selectedIconPath": "/images/tabicon1.png"
+      },
+      {
+        "pagePath": "pages/setting/setting",
+        "text": "设置",
+        "iconPath": "/images/tabicon2.png",
+        "selectedIconPath": "/images/tabicon4.png"
+      }
+    ],
+    "color": "#A1A1A1",
+    "selectedColor": "#000000",
+    "backgroundColor": "#f6f6f6",
+    "borderStyle": "white"
+  }
+}
