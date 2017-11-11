@@ -9,35 +9,6 @@
   box-sizing: border-box;
 }
 
-/** 用户头像面板 **/
-
-.header {
-  background-color: #ffd191;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 460rpx;
-  width: 100%;
-}
-
-.header>.avatar {
-  margin-top: -80rpx;
-  width: 180rpx;
-  height: 180rpx;
-  border-radius: 90rpx;
-  border: orange dashed 3px;
-}
-
-.nickname {
-  top: 320rpx;
-  position: absolute;
-}
-
-.motto {
-  top: 370rpx;
-  position: absolute;
-}
-
 
 /** 带文字和图片描述的的输入框 **/
 .fm{

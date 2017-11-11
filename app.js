@@ -24,28 +24,37 @@ App({
             ajax.ajax({
               url: "/user/getUserByOpenid/" + res.data.openid,
               success: res => {
-                if (res.data.data.id.length==10){
+                if (res.data.data&&res.data.data.id.length == 10) {
                   ajax.ajax({
                     url: '/student/getStudentByOpenid/' + this.globalData.openid,
                     success: res => {
                       if (this.userInfoReadyCallback) {
                         this.userInfoReadyCallback(res.data.data)
+                      } else{
+                        wx.showToast({
+                          duration:1000,
+                          icon: 'loading',
+                          title: '请重新启动',
+                          success: setTimeout(() => {
+                            this.userInfoReadyCallback(res.data.data)
+                          }, 1000)
+                        })
                       }
-
-                      // this.globalData.userInfo = res.data.data;
                     }
                   })
-                }else{
+                } else if (res.data.data){
                   if (this.userInfoReadyCallback) {
                     this.userInfoReadyCallback(res.data.data)
+                  } else {
+                    wx.showToast({
+                      icon: 'loading',
+                      title: '请重新启动',
+                      success: setTimeout(()=>{
+                        this.userInfoReadyCallback(res.data.data)
+                      },1000)
+                    })
                   }
-                // this.globalData.userInfo = res.data.data
                 }
-                //如果已经执行到index，则将获取的用户数据设置到index界面；通过函数是否定义来判断是否已经执行到page
-
-                // if (this.userInfoReadyCallback) {
-                //   this.userInfoReadyCallback(res.data.data)
-                // }
               }
             })
           }

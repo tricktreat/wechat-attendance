@@ -25,12 +25,13 @@ Page({
         userInfo: info,
         openid: app.globalData.openid
       })
+      
     } else {
       this.show("用户信息授权失败，请重新授权！")
     }
   },
   formSubmit: function (e) {
-    if (!e.detail.value.name && !e.detail.value.id) {
+    if (!e.detail.value.name || !e.detail.value.id) {
       this.show("请完善用户信息！！")
       return
     }
@@ -43,6 +44,7 @@ Page({
       this.show("你的工号错误格式！")
       return
     }
+    app.globalData.userInfo = e.detail.value
     ajax.ajax({
       data: e.detail.value,
       url: "/user/updateWXUser",
@@ -56,7 +58,7 @@ Page({
             success: () => {
               setTimeout(() => {
                 wx.switchTab({
-                  url: '../setting/setting',
+                  url: '../usercenter/usercenter',
                 })
               }, 2000)
             }

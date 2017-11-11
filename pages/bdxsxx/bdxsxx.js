@@ -7,6 +7,7 @@ Page({
     userInfo: null
   },
   onLoad: function () {
+
     new app.ToastPannnel.ToastPannnel()
 
   },
@@ -30,7 +31,7 @@ Page({
     }
   },
   formSubmit: function(e) {
-    if (!e.detail.value.name && !e.detail.value.id) {
+    if (!e.detail.value.name || !e.detail.value.id) {
       this.show("请完善用户信息！！")
       return
     }
@@ -63,7 +64,7 @@ Page({
             success: () => {
               setTimeout(()=>{
                 wx.switchTab({
-                  url: '../setting/setting',
+                  url: '../usercenter/usercenter',
                 })
               },2000)
             }

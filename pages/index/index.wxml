@@ -1,0 +1,35 @@
+<!--index.wxml-->
+<import src="../../template/toast/toast.wxml" />
+<template is="toast" data="{{..._toast_}}" />
+
+
+<view class='container' wx:if="{{!hasUserInfo}}">
+  <view class='bg'> </view>
+  <view class='card'>
+    <view class='tips'>未绑定账号，请先绑定账号。</view>
+    <view class='ics'>
+      <image bindtap='iamstudent' class='ic' src='http://aff.suda.edu.cn/default/home/images/btn_student_normal.png'></image>
+      <image bindtap='iamteacher' class='ic' src='http://aff.suda.edu.cn/default/home/images/btn_teacher_normal.png'></image>
+    </view>
+  </view>
+</view>
+<view class='container' wx:elif="{{userInfo.id.length==10}}">
+  <view class='bg'> </view>
+  <!-- <form report-submit='true' bindsubmit='test'>
+    <button form-type='submit'>submit</button>
+  </form>
+  {{userInfo.name}} -->
+
+  <view class='navbox'>
+    <view class='navitem' data-index='{{index}}' bindtap='selectkc' wx:for="{{navimages}}">
+      <image class='navimage' src='{{navimagesurl+item}}' />
+    </view>
+  </view>
+
+  <picker-view hidden='{{kcxz}}' indicator-class="indicator" mask-class="mask" class='picker' value="{{[1]}}" bindchange="pickkc">
+    <picker-view-column>
+      <view wx:for="{{kcinfos}}" class='pickeritem'>{{kcinfos[index]}}</view>
+    </picker-view-column>
+  </picker-view>
+  <button class='signbtn' hidden='{{kcxz}}' bindtap='signin'>打卡</button>
+</view>

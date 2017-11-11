@@ -22,9 +22,9 @@ function ToastPannnel(){
   let pages=getCurrentPages()
   let curPage=pages[pages.length-1]
   this.__page=curPage
-  Object.assign(curPage,toastPannel)
+  Object.assign(curPage,toastPannel) // 把模版上的函数加载到page对象
   curPage.toastPannel=this;
-  curPage.setData(_comData);
+  curPage.setData(_comData);  // 把模版上的数据对象加载到page对象
   return this;
 }
 

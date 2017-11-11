@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/kcqd/kcqd",
-    "pages/setting/setting",
+    "pages/index/index",
+    "pages/usercenter/usercenter",
     "pages/about/about",
     "pages/bdxsxx/bdxsxx",
     "pages/bdlsxx/bdlsxx"
@@ -15,13 +15,13 @@
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/kcqd/kcqd",
+        "pagePath": "pages/index/index",
         "text": "考勤",
         "iconPath": "/images/tabicon2.png",
         "selectedIconPath": "/images/tabicon1.png"
       },
       {
-        "pagePath": "pages/setting/setting",
+        "pagePath": "pages/usercenter/usercenter",
         "text": "设置",
         "iconPath": "/images/tabicon2.png",
         "selectedIconPath": "/images/tabicon4.png"

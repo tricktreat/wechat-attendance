@@ -1,0 +1,45 @@
+<!--pages/setting/setting.wxml-->
+<view class='container'>
+
+  <view class="header">
+    <image class="avatar" mode="aspectFill" src="{{userInfo.headurl}}">
+    </image>
+
+    <view class="nickname">
+      {{userInfo.name}}
+    </view>
+    <view class="motto" bindtap="setInfo">
+      {{userInfo.bj}}
+    </view>
+
+    <image class='bgim' src='http://115.159.58.187/kckqimages/2.png'></image>
+  </view>
+  <view class='bg'> </view>
+  <view class='table'>
+    <view class='section'>
+          <view class='item'>
+        <image src='http://115.159.58.187/kckqimages/icon/icon-save.png' class='itemimg'></image>
+        <view class='itemtxt'>我的收藏</view>
+      </view>
+
+      <view class='item'>
+        <image src='http://115.159.58.187/kckqimages/icon/icon-link.png' class='itemimg'></image>
+        <view class='itemtxt'>友情链接</view>
+      </view>
+      <view class='item'>
+        <image src='http://115.159.58.187/kckqimages/icon/icon-note.png' class='itemimg'></image>
+        <view class='itemtxt'>我的记录</view>
+      </view>
+    </view>
+    <view class='section'>
+      <view class='item'>
+        <image src='http://115.159.58.187/kckqimages/icon/icon-rank.png' class='itemimg'></image>
+        <view class='itemtxt'>关于我们</view>
+      </view>
+      <view class='item'>
+        <image src='http://115.159.58.187/kckqimages/icon/icon-at.png' class='itemimg'></image>
+        <view class='itemtxt'>问题反馈</view>
+      </view>
+    </view>
+  </view>
+</view>
