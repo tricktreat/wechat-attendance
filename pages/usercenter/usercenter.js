@@ -12,5 +12,8 @@ Page({
     this.setData({
       userInfo: app.globalData.userInfo
     })
+  },
+  onPullDownRefresh:function(){
+    wx.stopPullDownRefresh()
   }
 })

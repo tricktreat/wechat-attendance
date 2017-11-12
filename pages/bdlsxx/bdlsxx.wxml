@@ -1,4 +1,8 @@
 <!--pages/bdxsxx/bdxsxx.wxml-->
+<import src="../../template/toast/toast.wxml" />
+<template is="toast" data="{{..._toast_}}" />
+
+
 <view class='container'>
 <view class='card'>
   <image class='avatar_1' mode='scaleToFit' src="{{userInfo?userInfo.avatarUrl:'../../images/icon-user.png'}}" style="{{userInfo?'':'padding:20rpx;'}}"></image>
@@ -10,7 +14,7 @@
     <view class='ipt'>
       <image class='img' src='../../images/icon-royal-gray.png'></image>
       <view class='ipt-label'>工号</view>
-      <input name="id" class='ipt-txt' placeholder='请输入学号...'></input>
+      <input name="id" class='ipt-txt' placeholder='请输入工号...'></input>
     </view>
     <view class='ipt'>
       <image class='img' src='../../images/icon-royal-gray.png'></image>

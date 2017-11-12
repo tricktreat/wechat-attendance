@@ -1,6 +1,6 @@
 .toastbox{
   position: fixed;
-  bottom: 30%;
+  bottom: 15%;
   display: flex;
   z-index: 999;
   align-items: center;

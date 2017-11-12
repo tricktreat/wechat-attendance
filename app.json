@@ -10,19 +10,20 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "上课啦",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "考勤",
+        "text": "课程考勤",
         "iconPath": "/images/tabicon2.png",
         "selectedIconPath": "/images/tabicon1.png"
       },
       {
         "pagePath": "pages/usercenter/usercenter",
-        "text": "设置",
+        "text": "个人中心",
         "iconPath": "/images/tabicon2.png",
         "selectedIconPath": "/images/tabicon4.png"
       }

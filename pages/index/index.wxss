@@ -3,7 +3,7 @@ page{
 background-color: #83D6F9
 }
 .container{
-  position:fixed;
+  position: fixed;
   width: 100%;
 }
 .banner{
@@ -97,4 +97,109 @@ height: 70rpx;
   margin:70rpx 0 0 0;
   color: white;
   background: rgba(46,104,170,0.7)
+}
+
+.signbtn[disabled]:not([type]){
+    color: white;
+  background: rgba(255,0,0,0.6)
+}
+
+.table{
+  margin-top: 80rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  opacity: 0.4;
+}
+
+.item{
+   margin: 1px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100rpx;
+  background-color: white;
+}
+
+.itemimg{
+ margin: 20rpx;
+  width: 60rpx;
+  height: 60%;
+}
+
+.itemtxt{
+  padding-left: 40rpx;
+  font-size: 14px;
+}
+
+.t_two{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+margin-top: 50rpx;
+  height: 700rpx;
+}
+
+.box{
+   display: flex;
+   flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  opacity: 0.6;
+  background: white;
+  height: 100%;
+  width:90%
+}
+.header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+  border-bottom: rgba(46,104,170,0.7) 2px solid;
+}
+.scrollview{
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.itemsigned{
+  padding: 10rpx;
+  width: 100%;
+  height:60rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: rgba(46,104,170,0.7) 1px solid;
+}
+
+.id{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.touxiang{
+
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.xh{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200rpx;
+}
+
+.name{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200rpx;
 }
