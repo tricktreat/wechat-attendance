@@ -5,12 +5,10 @@
 <!-- 未绑定信息界面 -->
 <view class='container' wx:if="{{!hasUserInfo}}">
   <view class='bg'> </view>
-  <view class='card'>
-    <view class='tips'>未绑定账号，请先绑定账号。</view>
-    <view class='ics'>
-      <image bindtap='iamstudent' class='ic' src='http://aff.suda.edu.cn/default/home/images/btn_student_normal.png'></image>
-      <image bindtap='iamteacher' class='ic' src='http://aff.suda.edu.cn/default/home/images/btn_teacher_normal.png'></image>
-    </view>
+  <view class='tips'>未绑定账号，请先绑定账号。</view>
+  <view class='ics'>
+    <image bindtap='iamstudent' class='ic' src='http://aff.suda.edu.cn/default/home/images/btn_student_normal.png'></image>
+    <image bindtap='iamteacher' class='ic' src='http://aff.suda.edu.cn/default/home/images/btn_teacher_normal.png'></image>
   </view>
 </view>
 
@@ -74,11 +72,11 @@
   <!-- 老师第一个页面 -->
   <view hidden='{{itemindex!=0}}' class='table' animation="{{animationpick}}">
     <view data-index='{{index}}' bindtap='changekcstate' class='item' wx:for="{{kcinfos}}" style="background-color:{{item.allowornot?'rgba(0,255,0,0.3)':'white'}}">
-      <image src='http://115.159.58.187/kckqimages/icon/icon-rank.png' class='itemimg'></image>
+      <image src="{{item.allowornot?'http://115.159.58.187/kckqimages/icon/icon-edit.png':'http://115.159.58.187/kckqimages/icon/icon-time.png'}}" class='itemimg'></image>
       <view class='itemtxt'>{{item.kcmc}}</view>
     </view>
   </view>
-  <view style='margin-top:30rpx' animation="{{animationpick}}" hidden='{{itemindex!=0}}'>点击课程可开始考勤或结束考勤</view>
+  <view style='margin-top:30rpx' animation="{{animationpick}}" hidden='{{itemindex!=0}}'>点击课程条目即可更改考勤状态</view>
 
   <!-- 选择查看的课程 -->
   <picker-view animation="{{animationpick}}" hidden='{{(itemindex!=2&&itemindex!=1)||!picker}}' indicator-class="indicator" mask-class="mask" class='picker' value="{{[1]}}" bindchange="pickkc">
@@ -92,7 +90,7 @@
   <!-- 老师第二个页面 -->
   <view hidden='{{itemindex!=1||picker}}' class='t_two' animation="{{animationpick}}">
     <view class="box">
-      <view class='header'>已经签到同学</view>
+      <view class='header'>{{kcinfos[kcindex].kcmc}}</view>
       <scroll-view scroll-y='true' class='scrollview'>
         <view class='itemsigned' wx:for="{{signedstudent}}">
           <view class='id'>
@@ -107,16 +105,16 @@
 
   </view>
   <!-- 老师第三个页面 -->
-  <view hidden='{{itemindex!=2||picker}}' class='t_two' animation="{{animationpick}} ">
+  <view hidden='{{itemindex!=2||picker}}' class='t_two' animation="{{animationpick}}">
 
     <view class="box">
-      <view class='header'>未签到同学</view>
+      <view class='header'>{{kcinfos[kcindex].kcmc}}</view>
       <scroll-view scroll-y='true' class='scrollview'>
         <view class='itemsigned' wx:for="{{notsignstudent}}">
           <view class='id'>
             {{index+1}}
           </view>
-          <image class='touxiang' src="{{item.headurl?item.headurl:'http://115.159.58.187/kckqimages/icon/tabicon8.png'}}"></image>
+          <image class='touxiang' src="{{'http://115.159.58.187/kckqimages/icon/tabicon8.png'}}"></image>
           <view class='xh'>{{item.id}}</view>
           <view class='name'>{{item.name}}</view>
 
@@ -130,7 +128,7 @@
 
 
   <!-- 老师第四个页面 -->
-  <view hidden='{{itemindex!=3}}' animation="{{animationpick}} ">
+  <view hidden='{{itemindex!=3}}' animation="{{animationpick}}">
     老师第四个页面
   </view>
 

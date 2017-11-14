@@ -11,14 +11,27 @@
 
 
 /** 带文字和图片描述的的输入框 **/
+
+.card{
+  box-sizing: border-box;
+  width: 100%;
+  height: 450rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url(http://115.159.58.187/kckqimages/bb.png) #83D6F9 no-repeat 75% 0%;
+  background-size: 150%;
+}
+
 .fm{
-  margin-top: 30rpx;
+  margin-top: 20rpx;
   display: flex;
   justify-content: center;
   width: 100%;
   align-items: center;
 }
 .getinfo{
+  color: rgba(46,104,170,0.7);
   font-size: 12px;
   margin: 80rpx auto;
   width: 500rpx;
@@ -31,36 +44,54 @@
   border-radius: 90rpx;
   width: 180rpx;
   height: 180rpx;
-  border: solid 3px black;
+  border: solid 3px rgba(46,104,170,0.7);
 }
 
+.setingbg{
+  z-index: -999;
+  position:absolute;
+  bottom: 0;
+  background: url(http://www.suda.edu.cn/images/25.jpg) no-repeat 0 0;
+  background-size: auto 500rpx;
+  width: 100%;
+  height: 500rpx;
+}
+
+
 .ipt{
-  margin: 10rpx;
+  margin: 15rpx;
   display: flex;
   flex-direction: row;
   width: 750rpx;
   height: 80rpx;
   align-items: center;
-  background: ghostwhite;
-  border-radius: 20rpx;
+  background: rgba(255,255, 255, 0.5);
+}
+
+.ipt-head{
+  align-items: center;
+background:rgba(110, 190, 220, 0.7);
+display: flex;
+justify-content: space-around;
+width: 140rpx;
+  height: 100%;
 }
 
 .img{
-  background: #83D6F9;
-  width: 80rpx;
-  height: 100%;
+  
+  width: 60rpx;
+  height: 60rpx;
   border-top-left-radius: 10rpx;
   border-bottom-left-radius: 10rpx;
-  padding: 25rpx;
+  padding: 10rpx;
   box-sizing: border-box;
 }
 
 .ipt-label{
   font-size: 14px;
-  margin-left: -13rpx;
+  margin-left: 0;
   display: flex;
   align-items: center;
-  background: #83D6F9;
   width: 80rpx;
   height: 100%;
 }
@@ -74,24 +105,14 @@
 }
 
 .btn-submit{
+  color: black;
   display: flex;
-  width: 100%;
+  width: 90%;
   height: 80rpx;
-  background: transparent;
-  border: gainsboro 1px solid;
+background: rgba(110, 190, 220, 0.7);
 margin-top: 60rpx;
 border-radius: 0;
 justify-content: center;
 align-items: center;
 }
 
-/**定义卡片**/
-.card{
-  background-color: #83D6F9;
-  box-sizing: border-box;
-  width: 100%;
-  height: 450rpx;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}

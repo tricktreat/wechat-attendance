@@ -11,10 +11,11 @@ background-color: #83D6F9
 }
 
 .bg{
+  z-index: -9;
   position: absolute;
   bottom: 0rpx;
-  background: url(http://aff.suda.edu.cn/default/home/images/bg_pic.png) no-repeat 0rpx 0;
-  background-size: 100% 100%;
+  background: url(http://aff.suda.edu.cn/default/home/images/bg_pic.png) no-repeat 50% 100%;
+  background-size: 145% 100%;
   width: 100%;
   height: 550rpx;
 
@@ -35,6 +36,7 @@ background-color: #83D6F9
 }
 
 .navbox{
+  opacity: 1;
   align-items: center;
   display: flex;
   justify-content: space-around;
@@ -68,7 +70,6 @@ box-shadow: 0 0 30rpx rgba(46,104,170,0.8);
 
 .picker{
   margin:80rpx 0 0 0;
-  border-radius: 60rpx;
   width: 80%;
   height: 400rpx;
 }
@@ -110,7 +111,6 @@ height: 70rpx;
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  opacity: 0.4;
 }
 
 .item{
@@ -123,9 +123,11 @@ height: 70rpx;
 }
 
 .itemimg{
- margin: 20rpx;
-  width: 60rpx;
-  height: 60%;
+
+  box-sizing: border-box;
+  padding: 7px 0px 7px 14px;
+  width: 35px;
+  height: 35px;
 }
 
 .itemtxt{
@@ -143,11 +145,11 @@ margin-top: 50rpx;
 }
 
 .box{
+  border-radius: 20rpx;
    display: flex;
    flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  opacity: 0.6;
   background: white;
   height: 100%;
   width:90%
@@ -162,6 +164,7 @@ margin-top: 50rpx;
 }
 .scrollview{
   height: 80%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -171,7 +174,7 @@ margin-top: 50rpx;
   width: 100%;
   height:60rpx;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   border-bottom: rgba(46,104,170,0.7) 1px solid;
 }
@@ -202,4 +205,6 @@ margin-top: 50rpx;
   justify-content: center;
   align-items: center;
   width: 200rpx;
+  white-space:nowrap;
+  overflow:hidden;
 }

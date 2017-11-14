@@ -46,12 +46,12 @@ Page({
   },
 
   iamstudent: () => {
-    wx.redirectTo({
+    wx.navigateTo({
       url: '../bdxsxx/bdxsxx',
     })
   },
   iamteacher: () => {
-    wx.redirectTo({
+    wx.navigateTo({
       url: '../bdlsxx/bdlsxx',
     })
   },
@@ -72,18 +72,30 @@ Page({
 
     switch (e.currentTarget.dataset.index) {
       case 0:
-        this.setData({ itemindex: 0})
-        this.getckinfobyjsh("绿色课程为可签到状态")
+        wx.setNavigationBarTitle({
+          title: '课程考勤',
+        })
+        this.setData({ itemindex: 0 })
+        this.getckinfobyjsh()
         break
       case 1:
-        this.getckinfobyjsh("查看已经签到的同学")
-        this.setData({picker:true, itemindex: 1 })
+        wx.setNavigationBarTitle({
+          title: '已签到',
+        })
+        this.getckinfobyjsh()
+        this.setData({ picker: true, itemindex: 1 })
         break
       case 2:
-        this.getckinfobyjsh("查看未签到的同学")
-        this.setData({picker:true, itemindex: 2 })
+        wx.setNavigationBarTitle({
+          title: '未签到',
+        })
+        this.getckinfobyjsh()
+        this.setData({ picker: true, itemindex: 2 })
         break
       case 3:
+        wx.setNavigationBarTitle({
+          title: '待开发',
+        })
         this.setData({ itemindex: 3 })
         this.show("暂未推出该功能")
         break
@@ -211,6 +223,10 @@ Page({
 
   },
   onShow: function () {
+    
+    if (!this.data.userInfo && app.globalData.userInfo) {
+      this.setData({ userInfo: app.globalData.userInfo ,hasUserInfo:true})
+    }
     var animation = wx.createAnimation({
       duration: 200,
       timingFunction: 'ease',
@@ -238,11 +254,26 @@ Page({
       success: res => {
         this.setData({ kcinfos: res.data.data })
         wx.stopPullDownRefresh()
-        this.show(message)
+        if (message) {
+          this.show(message)
+        }
       }
     })
   },
   onPullDownRefresh: function () {
+    if (!app.globalData.userInfo) {
+      this.show('更新数据失败，用户未登录！')
+      wx.stopPullDownRefresh()
+      return
+    }
+    if (!this.data.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo
+      })
+      wx.stopPullDownRefresh()
+      return
+    }
+
     //教师下拉逻辑
     if (this.data.userInfo.id.length != 10) {
 
@@ -250,18 +281,19 @@ Page({
         case null, 0:
           this.getckinfobyjsh("课程信息已更新")
           break
-          case 1:
+        case 1:
           this.confirm()
-          default:
+        default:
           wx.stopPullDownRefresh()
 
       }
-      
+
       return
     }
+
     //学生下拉逻辑
     switch (this.data.itemindex) {
-      case null, 0:
+      case null: case 0:
         ajax.ajax({
           url: "/user/getUserByOpenid/" + app.globalData.openid,
           success: res => {
@@ -269,6 +301,7 @@ Page({
               ajax.ajax({
                 url: '/student/getStudentByOpenid/' + app.globalData.openid,
                 success: res => {
+
                   app.userInfoReadyCallback(res.data.data)
                   this.setData({ userInfo: res.data.data })
 
@@ -280,7 +313,7 @@ Page({
           }
         })
         break
-default:
+      default:
         wx.stopPullDownRefresh()
     }
 
@@ -296,41 +329,50 @@ default:
       url: '/kcinfo/changeAllowOrNot/' + kch,
       success: res => {
 
-        this.getckinfobyjsh(res.data.message)
+        this.getckinfobyjsh()
         wx.hideLoading()
       }
     })
   },
 
-  confirm:function(){
+  confirm: function () {
+    this.setData({
+      animationpick: this.animation.export()
+    })
+    this.animation.opacity(0.7).step()
+    setTimeout(() => {
+      this.setData({
+        animationpick: this.animation.export()
+      })
+    }, 200)
     var kc = this.data.kcinfos[this.data.kcindex]
     ajax.ajax({
-      url:'kcqd/getKcqdInfosByKch/'+kc.kch,
-      success:(e)=>{
-        this.setData({ picker: false, signedstudent: e.data.data})
+      url: 'kcqd/getKcqdInfosByKch/' + kc.kch,
+      success: (e) => {
+        this.setData({ picker: false, signedstudent: e.data.data })
         ajax.ajax({
           url: 'student/getStudentsByKch/' + kc.kch,
-          success:res=>{
+          success: res => {
             var allstudentthiskc = res.data.data
-            var notsignstudent=[]
-            var flag=0
-            for (var i of allstudentthiskc){
+            var notsignstudent = []
+            var flag = 0
+            for (var i of allstudentthiskc) {
               var flag = 0
-              for (var j of e.data.data){
-                if(i.id==j.student.id){
-                  flag=1
+              for (var j of e.data.data) {
+                if (i.id == j.student.id) {
+                  flag = 1
                   break
                 }
               }
-              if(flag==0){
+              if (flag == 0) {
                 notsignstudent.push(i)
               }
             }
-            this.setData({ notsignstudent: notsignstudent})
+            this.setData({ notsignstudent: notsignstudent })
           }
         })
       }
     })
-    
+
   }
 })

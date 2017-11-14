@@ -1,23 +1,31 @@
 <!--pages/setting/setting.wxml-->
+<import src="../../template/toast/toast.wxml" />
+<template is="toast" data="{{..._toast_}}" />
+
+
 <view class='container'>
 
   <view class="header">
-    <image class="avatar" mode="aspectFill" src="{{userInfo.headurl}}">
-    </image>
+    <view wx:if="{{userInfo}}" class='userinfo'>
+      <image class="avatar" mode="aspectFill" src="{{userInfo.headurl}}">
+      </image>
 
-    <view class="nickname">
-      {{userInfo.name}}
+      <view class="nickname">
+        {{userInfo.name}}
+      </view>
+      <view class="motto" bindtap="setInfo">
+        {{userInfo.bj?userInfo.bj:userInfo.id}}
+      </view>
     </view>
-    <view class="motto" bindtap="setInfo">
-      {{userInfo.bj}}
+    <view wx:else>
+    未绑定账号，请先绑定！
     </view>
-
-    <image class='bgim' src='http://115.159.58.187/kckqimages/2.png'></image>
+    <image animation="{{animationbgim}}" class='bgim' src='http://115.159.58.187/kckqimages/2.png'></image>
   </view>
   <view class='bg'> </view>
   <view class='table'>
     <view class='section'>
-          <view class='item'>
+      <view class='item'>
         <image src='http://115.159.58.187/kckqimages/icon/icon-save.png' class='itemimg'></image>
         <view class='itemtxt'>我的收藏</view>
       </view>

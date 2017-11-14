@@ -1,4 +1,6 @@
 /* pages/bdxsxx/bdxsxx.wxss */
 page{
+  background-color: #EFEDE2;
+  height: 100%;
   position: fixed;
 }

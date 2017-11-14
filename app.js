@@ -1,4 +1,4 @@
-//app.js
+432//app.js
 var ToastPannnel = require("./template/toast/toast.js")
 var ajax = require("/ajax/ajax.js");
 App({
@@ -16,8 +16,17 @@ App({
         //获取openid
         wx.request({
           data: { code: res.code },
-          url: "https://www.ibilidi.cn/getOpenid",
+          url: "https://www.ibilidi.cn/getKQOpenid",
           success: res => {
+          if(!res.data.openid){
+            wx.showModal({
+              title: '难过+1',
+              content: '未知原因，后台崩了，考勤平台暂时无法使用！😂',
+                confirmText:'好的',
+                showCancel:false
+            })
+            return
+          }
             this.globalData.openid = res.data.openid
 
             //获取数据库中的用户信息

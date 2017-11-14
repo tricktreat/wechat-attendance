@@ -1,4 +1,8 @@
 {
   "navigationBarTitleText": "绑定教师信息",
-  "navigationBarBackgroundColor": "#83D6F9"
+  "navigationBarBackgroundColor": "#83D6F9",
+  "window": {
+"backgroundColor": "#83D6F9",
+    "enablePullDownRefresh": false
+  }
 }

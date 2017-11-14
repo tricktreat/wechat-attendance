@@ -2,6 +2,7 @@
 <template is="toast" data="{{..._toast_}}" />
 
 <view class='container'>
+
   <view class='card'>
     <image class='avatar_1' mode='scaleToFit' src="{{userInfo?userInfo.avatarUrl:'../../images/icon-user.png'}}" style="{{userInfo?'':'padding:20rpx;'}}"></image>
     <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='getinfo'>点击授权用户信息</button>
@@ -10,30 +11,45 @@
 
 
     <view class='ipt'>
-      <image class='img' src='../../images/icon-royal-gray.png'></image>
-      <view class='ipt-label'>学号</view>
+      <view class='ipt-head'>
+        <image class='img' src='../../images/icon-royal-gray.png'></image>
+        <view class='ipt-label'>学号</view>
+      </view>
       <input name="id" class='ipt-txt' placeholder='请输入学号...'></input>
     </view>
     <view class='ipt'>
-      <image class='img' src='../../images/icon-royal-gray.png'></image>
-      <view class='ipt-label'>姓名</view>
+
+      <view class='ipt-head'>
+        <image class='img' src='../../images/icon-royal-gray.png'></image>
+        <view class='ipt-label'>姓名</view>
+      </view>
       <input name="name" class='ipt-txt' placeholder='请输入姓名...'></input>
     </view>
-    <view class='ipt'>
-      <image class='img' src='../../images/icon-royal-gray.png'></image>
-      <view class='ipt-label'>头像</view>
-      <input name="headurl" value='{{userInfo.avatarUrl}}' disabled class='ipt-txt' placeholder='请授权用户信息...'></input>
-    </view>
-    <view class='ipt'>
-      <image class='img' src='../../images/icon-royal-gray.png'></image>
-      <view class='ipt-label'>性别</view>
+    <view style='font-size:12px;margin:30rpx 0 0 20rpx;'>以下为所需的微信授权信息:</view>
+        <view class='ipt'>
+      <view class='ipt-head'>
+        <image class='img' src='../../images/icon-royal-gray.png'></image>
+        <view class='ipt-label'>性别</view>
+      </view>
       <input value='{{userInfo.gender}}' disabled name="gender" class='ipt-txt' placeholder='请授权用户信息...'></input>
     </view>
     <view class='ipt'>
-      <image class='img' src='../../images/icon-royal-gray.png'></image>
-      <view class='ipt-label'>标识</view>
+      <view class='ipt-head'>
+        <image class='img' src='../../images/icon-royal-gray.png'></image>
+        <view class='ipt-label'>头像</view>
+      </view>
+
+      <input name="headurl" value='{{userInfo.avatarUrl}}' disabled class='ipt-txt' placeholder='请授权用户信息...'></input>
+    </view>
+
+    <view class='ipt'>
+      <view class='ipt-head'>
+        <image class='img' src='../../images/icon-royal-gray.png'></image>
+        <view class='ipt-label'>标识</view>
+      </view>
       <input disabled name="openid" value='{{openid}}' class='ipt-txt' placeholder='请授权用户信息...'></input>
     </view>
     <button formType='submit' bind class='btn-submit'>确认</button>
   </form>
+  <view class='setingbg'></view>
 </view>

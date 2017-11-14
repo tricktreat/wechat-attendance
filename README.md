@@ -10,5 +10,6 @@
 ![](/demo/kcqd_2.png)
 ![](/demo/kcqd_3.png)
 ![](/demo/kcqd_4.png)
-![](/demo/kcqd_5.png)
+![](/demo/kcqd_5.jpg)
+![](/demo/kcqd_7.png)
 ![](/demo/kcqd_6.png)

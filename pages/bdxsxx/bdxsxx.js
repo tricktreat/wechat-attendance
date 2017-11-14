@@ -7,7 +7,6 @@ Page({
     userInfo: null
   },
   onLoad: function () {
-
     new app.ToastPannnel.ToastPannnel()
 
   },
@@ -48,14 +47,12 @@ Page({
       data: e.detail.value,
       url: "/user/updateWXUser",
       success: res => {
-        console.log(res)
         if (res.data.state!=200){
           this.show(res.data.message)
         }else{
           ajax.ajax({
             url: '/student/getStudentByOpenid/' + app.globalData.openid,
             success:res=>{
-              console.log(res)
               app.globalData.userInfo = res.data.data;
             }
           })
@@ -75,5 +72,8 @@ Page({
         this.show("网络异常！")
       }
     })
+  },
+  onPullDownRefresh: () => {
+    wx.stopPullDownRefresh()
   }
 })
