@@ -30,6 +30,9 @@ Page({
       })
     }, 1000)
   },
+  tap:function(){
+this.show("开发中，苏州大学wakeup俱乐部")
+  },
   onLoad: function (options) {
 
     this.setData({

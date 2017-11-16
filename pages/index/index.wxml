@@ -16,12 +16,14 @@
 <view class='container' wx:elif="{{userInfo.id.length==10}}">
   <view class='bg'> </view>
 
-  <view class='navbox' animation="{{animationData}}">
+  <view class='navbox' style='height:200rpx;' animation="{{animationData}}">
     <view class='navitem' data-index='{{index}}' bindtap='studentselect' wx:for="{{navimages}}">
       <image class='navimage' src='{{navimagesurl+item}}' />
     </view>
   </view>
-
+ <view>{{userInfo.name}}{{userInfo.glkcInfos.length!=0?'课程管理员':'普通学生'}}，平台测试阶段！</view>
+  <view>请各位同学向班级科技委员提交bug！</view>
+     <view>（附上机型和说明）</view>
   <!-- 学生第一个页面 -->
   <picker-view animation="{{animationpick}}" hidden='{{itemindex!=0}}' indicator-class="indicator" mask-class="mask" class='picker' value="{{[1]}}" bindchange="pickkc">
     <picker-view-column>
@@ -30,17 +32,64 @@
   </picker-view>
   <button animation="{{animationpick}}" disabled="{{userInfo.kcInfos[kcindex].allowornot==0}}" class='signbtn' hidden='{{itemindex!=0}}' bindtap='signin'>{{userInfo.kcInfos[kcindex].allowornot==1?'打卡':'签到入口未开放'}}</button>
   <!-- 学生第二个页面 -->
-  <view hidden='{{itemindex!=1}}' animation="{{animationpick}}">
-    学生第二个页面
+    <view style='margin-top:10rpx' animation="{{animationpick}}" hidden='{{itemindex!=1||glkcinfos.length==0}}'>点击课程条目即可更改考勤状态</view>
+<scroll-view hidden='{{itemindex!=1||glkcinfos.length==0}}' scroll-y='true' style='margin-top:30rpx;height:50%'>
+    <view hidden='{{itemindex!=1||glkcinfos.length==0}}' class='table' animation="{{animationpick}}">
+    <view data-index='{{index}}' bindtap='stuchangekcstate' class='item' wx:for="{{glkcinfos}}" style="background-color:{{item.kcInfo.allowornot?'rgba(0,255,0,0.3)':'white'}}">
+      <image src="{{item.kcInfo.allowornot?'http://115.159.58.187/kckqimages/icon/icon-edit.png':'http://115.159.58.187/kckqimages/icon/icon-time.png'}}" class='itemimg'></image>
+      <view class='itemtxt'>{{item.kcInfo.kcmc}}</view>
+    </view>
   </view>
+  </scroll-view>
+
+  <view style='margin-top:200rpx' animation="{{animationpick}}" hidden='{{itemindex!=1||glkcinfos.length!=0}}'> 你没有任何课程的管理员权限</view>
+  <view style='margin-top:30rpx' animation="{{animationpick}}" hidden='{{itemindex!=1||glkcinfos.length!=0}}'> 不能打开和关闭课程的签到状态</view>
+    <view style='margin-top:30rpx' animation="{{animationpick}}" hidden='{{itemindex!=1||glkcinfos.length!=0}}'> 只有老师和课代表能访问该界面</view>
+  
+  <!-- 选择查看的课程 -->
+  <picker-view animation="{{animationpick}}" hidden='{{(itemindex!=2&&itemindex!=3)||!picker}}' indicator-class="indicator" mask-class="mask" class='picker' value="{{[1]}}" bindchange="pickkc">
+    <picker-view-column>
+      <view wx:for="{{kcinfos}}" class='pickeritem'>{{item.kcmc}}</view>
+    </picker-view-column>
+  </picker-view>
+  <button animation="{{animationpick}}" class='signbtn' hidden='{{(itemindex!=2&&itemindex!=3)||!picker}}' bindtap='confirm'>选择课程查看签到情况</button>
+
   <!-- 学生第三个页面 -->
-  <view hidden='{{itemindex!=2}}' animation="{{animationpick}}">
-    学生第三个页面
+  <view hidden='{{itemindex!=2||picker}}' class='t_two' animation="{{animationpick}}">
+    <view class="box">
+      <view class='header'>{{kcinfos[kcindex].kcmc}}</view>
+      <scroll-view scroll-y='true' class='scrollview'>
+        <view class='itemsigned' wx:for="{{signedstudent}}">
+          <view class='id'>
+            {{index+1}}
+          </view>
+          <image class='touxiang' src='{{item.student.headurl}}'></image>
+          <view class='xh'>{{item.student.id}}</view>
+          <view class='name'>{{item.student.name}}</view>
+        </view>
+      </scroll-view>
+    </view>
+
   </view>
   <!-- 学生第四个页面 -->
-  <view hidden='{{itemindex!=3}}' animation="{{animationpick}}">
-    学生第四个页面
+<view hidden='{{itemindex!=3||picker}}' class='t_two' animation="{{animationpick}}">
+    <view class="box">
+      <view class='header'>{{kcinfos[kcindex].kcmc}}</view>
+      <scroll-view scroll-y='true' class='scrollview'>
+        <view class='itemsigned' wx:for="{{notsignstudent}}">
+          <view class='id'>
+            {{index+1}}
+          </view>
+          <image class='touxiang' src="{{'http://115.159.58.187/kckqimages/icon/tabicon8.png'}}"></image>
+          <view class='xh'>{{item.id}}</view>
+          <view class='name'>{{item.name}}</view>
+
+        </view>
+      </scroll-view>
+    </view>
+
   </view>
+
   <!-- 学生第五个页面 -->
   <view hidden='{{itemindex!=4}}' animation="{{animationpick}}">
     学生第五个页面
@@ -68,15 +117,21 @@
       <image class='navimage' src='{{navimagesurl+item}}' />
     </view>
   </view>
-  <view>{{userInfo.name}}老师，您好！</view>
+  <view>{{userInfo.name}}老师，平台测试阶段！</view>
+  <view>请各位同学向班级科技委员提交bug！</view>
+
+    <view>（附上机型和说明）</view>
   <!-- 老师第一个页面 -->
-  <view hidden='{{itemindex!=0}}' class='table' animation="{{animationpick}}">
+    <view style='margin-top:10rpx' animation="{{animationpick}}" hidden='{{itemindex!=0}}'>点击课程条目即可更改考勤状态</view>
+<scroll-view hidden='{{itemindex!=0}}' scroll-y='true' style='margin-top:30rpx;height:50%'><view hidden='{{itemindex!=0}}'  class='table' animation="{{animationpick}}">
     <view data-index='{{index}}' bindtap='changekcstate' class='item' wx:for="{{kcinfos}}" style="background-color:{{item.allowornot?'rgba(0,255,0,0.3)':'white'}}">
       <image src="{{item.allowornot?'http://115.159.58.187/kckqimages/icon/icon-edit.png':'http://115.159.58.187/kckqimages/icon/icon-time.png'}}" class='itemimg'></image>
       <view class='itemtxt'>{{item.kcmc}}</view>
     </view>
   </view>
-  <view style='margin-top:30rpx' animation="{{animationpick}}" hidden='{{itemindex!=0}}'>点击课程条目即可更改考勤状态</view>
+</scroll-view>
+  
+
 
   <!-- 选择查看的课程 -->
   <picker-view animation="{{animationpick}}" hidden='{{(itemindex!=2&&itemindex!=1)||!picker}}' indicator-class="indicator" mask-class="mask" class='picker' value="{{[1]}}" bindchange="pickkc">
@@ -129,7 +184,7 @@
 
   <!-- 老师第四个页面 -->
   <view hidden='{{itemindex!=3}}' animation="{{animationpick}}">
-    老师第四个页面
+    老师第四个页面，还没想好做什么
   </view>
 
 </view>

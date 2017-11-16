@@ -43,7 +43,7 @@ App({
                         wx.showToast({
                           duration:1000,
                           icon: 'loading',
-                          title: '请重新启动',
+                          title: '后台服务器太烂了',
                           success: setTimeout(() => {
                             this.userInfoReadyCallback(res.data.data)
                           }, 1000)
