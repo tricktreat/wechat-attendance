@@ -40,11 +40,11 @@
       </view>
     </view>
     <view class='section'>
-      <view  bindtap='tap' class='item'>
+      <view  bindtap='tapabout' class='item'>
         <image src='http://115.159.58.187/kckqimages/icon/icon-rank.png' class='itemimg'></image>
         <view class='itemtxt'>关于我们</view>
       </view>
-      <view bindtap='tap' class='item'>
+      <view bindtap='tapfeedback' class='item'>
         <image src='http://115.159.58.187/kckqimages/icon/icon-at.png' class='itemimg'></image>
         <view class='itemtxt'>问题反馈</view>
       </view>

@@ -30,8 +30,19 @@ Page({
       })
     }, 1000)
   },
-  tap:function(){
-this.show("开发中，苏州大学wakeup俱乐部")
+  tap: function () {
+    this.show("开发中，苏州大学wakeup俱乐部")
+  },
+  tapabout: function () {
+    wx.navigateTo({
+      url: '../about/about',
+    })
+  },
+  tapfeedback: function () {
+    wx.navigateTo({
+      url: '../feedback/feedback',
+    })
+
   },
   onLoad: function (options) {
 

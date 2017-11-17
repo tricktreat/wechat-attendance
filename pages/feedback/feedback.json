@@ -2,7 +2,7 @@
   "navigationBarBackgroundColor": "#83D6F9",
   "backgroundColor": "#83D6F9",
   "window": {
-    "navigationBarTitleText": "个人中心",
+    "navigationBarTitleText": "问题反馈",
     "enablePullDownRefresh": false
   }
 }

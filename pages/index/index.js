@@ -13,10 +13,10 @@ Page({
     motto: 'Hello World',
     userInfo: null,
     hasUserInfo: false,
-    navimagesurl: "http://115.159.58.187/kckqimages/icon/chinesestyle/",
-    navimages: ["c_zi.png", "c_chou.png", "c_yin.png", "c_mao.png"],
+    navimagesurl: "http://115.159.58.187/kckqimages/navitems/",
+    navimages: ["1.png", "2.png", "3.png", "4.png"],
     // navimages: ["c_zi.png", "c_chou.png", "c_yin.png", "c_mao.png", "c_chen.png", "c_si.png", "c_wu.png", "c_wei.png"],
-    navimagest: ["c_shen.png", "c_you.png", "c_xu.png", "c_hai.png"],
+    navimagest: ["2.png", "3.png", "4.png", "5.png"],
     itemindex: null,
     kcindex: 0,
     picker:false

@@ -4,7 +4,8 @@
     "pages/usercenter/usercenter",
     "pages/about/about",
     "pages/bdxsxx/bdxsxx",
-    "pages/bdlsxx/bdlsxx"
+    "pages/bdlsxx/bdlsxx",
+    "pages/feedback/feedback"
   ],
   "window": {
     "backgroundTextStyle": "light",

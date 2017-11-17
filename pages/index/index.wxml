@@ -21,9 +21,10 @@
       <image class='navimage' src='{{navimagesurl+item}}' />
     </view>
   </view>
- <view>{{userInfo.name}}{{userInfo.glkcInfos.length!=0?'课程管理员':'普通学生'}}，平台测试阶段！</view>
-  <view>请各位同学向班级科技委员提交bug！</view>
-     <view>（附上机型和说明）</view>
+
+ <image wx:if='{{itemindex==null}}' class='headurl' src='{{userInfo.headurl}}'></image>
+
+  <view>用户：{{userInfo.name}} 🔥 版本：V1.0测试</view>
   <!-- 学生第一个页面 -->
   <picker-view animation="{{animationpick}}" hidden='{{itemindex!=0}}' indicator-class="indicator" mask-class="mask" class='picker' value="{{[1]}}" bindchange="pickkc">
     <picker-view-column>
@@ -32,20 +33,19 @@
   </picker-view>
   <button animation="{{animationpick}}" disabled="{{userInfo.kcInfos[kcindex].allowornot==0}}" class='signbtn' hidden='{{itemindex!=0}}' bindtap='signin'>{{userInfo.kcInfos[kcindex].allowornot==1?'打卡':'签到入口未开放'}}</button>
   <!-- 学生第二个页面 -->
-    <view style='margin-top:10rpx' animation="{{animationpick}}" hidden='{{itemindex!=1||glkcinfos.length==0}}'>点击课程条目即可更改考勤状态</view>
-<scroll-view hidden='{{itemindex!=1||glkcinfos.length==0}}' scroll-y='true' style='margin-top:30rpx;height:50%'>
+
+<scroll-view hidden='{{itemindex!=1||glkcinfos.length==0}}' scroll-y='true' style='margin-top:60rpx;height:55%'>
     <view hidden='{{itemindex!=1||glkcinfos.length==0}}' class='table' animation="{{animationpick}}">
-    <view data-index='{{index}}' bindtap='stuchangekcstate' class='item' wx:for="{{glkcinfos}}" style="background-color:{{item.kcInfo.allowornot?'rgba(0,255,0,0.3)':'white'}}">
-      <image src="{{item.kcInfo.allowornot?'http://115.159.58.187/kckqimages/icon/icon-edit.png':'http://115.159.58.187/kckqimages/icon/icon-time.png'}}" class='itemimg'></image>
+    <view data-index='{{index}}' bindtap='stuchangekcstate' class='item' wx:for="{{glkcinfos}}" style="background-color:{{item.kcInfo.allowornot?'rgba(46,104,170,0.7)':'white'}}">
+      <image src="{{item.kcInfo.allowornot?'http://115.159.58.187/kckqimages/icon/icon-add.png':'http://115.159.58.187/kckqimages/icon/icon-delete.png'}}" class='itemimg'></image>
       <view class='itemtxt'>{{item.kcInfo.kcmc}}</view>
+    <view wx:if='{{item.kcInfo.allowornot}}' style='margin-left:140rpx;font-size:11px;'>可签到</view>  
     </view>
   </view>
   </scroll-view>
 
-  <view style='margin-top:200rpx' animation="{{animationpick}}" hidden='{{itemindex!=1||glkcinfos.length!=0}}'> 你没有任何课程的管理员权限</view>
-  <view style='margin-top:30rpx' animation="{{animationpick}}" hidden='{{itemindex!=1||glkcinfos.length!=0}}'> 不能打开和关闭课程的签到状态</view>
-    <view style='margin-top:30rpx' animation="{{animationpick}}" hidden='{{itemindex!=1||glkcinfos.length!=0}}'> 只有老师和课代表能访问该界面</view>
-  
+  <view style='margin-top:400rpx' animation="{{animationpick}}" hidden='{{itemindex!=1||glkcinfos.length!=0}}'> 你没有课程的管理员权限</view>
+
   <!-- 选择查看的课程 -->
   <picker-view animation="{{animationpick}}" hidden='{{(itemindex!=2&&itemindex!=3)||!picker}}' indicator-class="indicator" mask-class="mask" class='picker' value="{{[1]}}" bindchange="pickkc">
     <picker-view-column>
@@ -109,6 +109,8 @@
 
 </view>
 
+
+<!-- 老师界面 -->
 <view wx:else class='container'>
   <view class='bg'> </view>
 
@@ -117,16 +119,17 @@
       <image class='navimage' src='{{navimagesurl+item}}' />
     </view>
   </view>
-  <view>{{userInfo.name}}老师，平台测试阶段！</view>
-  <view>请各位同学向班级科技委员提交bug！</view>
 
-    <view>（附上机型和说明）</view>
+   <image wx:if='{{itemindex==null}}' class='headurl' src='{{userInfo.headurl}}'></image>
+  <view>用户：{{userInfo.name}} 🔥 版本：V1.0测试</view>
+
   <!-- 老师第一个页面 -->
-    <view style='margin-top:10rpx' animation="{{animationpick}}" hidden='{{itemindex!=0}}'>点击课程条目即可更改考勤状态</view>
-<scroll-view hidden='{{itemindex!=0}}' scroll-y='true' style='margin-top:30rpx;height:50%'><view hidden='{{itemindex!=0}}'  class='table' animation="{{animationpick}}">
-    <view data-index='{{index}}' bindtap='changekcstate' class='item' wx:for="{{kcinfos}}" style="background-color:{{item.allowornot?'rgba(0,255,0,0.3)':'white'}}">
-      <image src="{{item.allowornot?'http://115.159.58.187/kckqimages/icon/icon-edit.png':'http://115.159.58.187/kckqimages/icon/icon-time.png'}}" class='itemimg'></image>
+
+<scroll-view hidden='{{itemindex!=0}}' scroll-y='true' style='margin-top:60rpx;height:55%'><view hidden='{{itemindex!=0}}'  class='table' animation="{{animationpick}}">
+    <view data-index='{{index}}' bindtap='changekcstate' class='item' wx:for="{{kcinfos}}" style="background-color:{{item.allowornot?'rgba(46,104,170,0.7)':'white'}}">
+      <image src="{{item.allowornot?'http://115.159.58.187/kckqimages/icon/icon-add.png':'http://115.159.58.187/kckqimages/icon/icon-delete.png'}}" class='itemimg'></image>
       <view class='itemtxt'>{{item.kcmc}}</view>
+          <view wx:if='{{item.allowornot}}' style='margin-left:140rpx;font-size:11px;'>可签到</view>  
     </view>
   </view>
 </scroll-view>

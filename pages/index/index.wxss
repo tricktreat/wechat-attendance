@@ -65,9 +65,16 @@ box-shadow: 0 0 30rpx rgba(46,104,170,0.8);
 
 .navimage{
   width: 70%;
-  height: 70%;
+  height: 50%;
 }
 
+
+.headurl{
+  margin: 140rpx 0rpx 50rpx 0rpx;
+  width: 250rpx;
+  height: 250rpx;
+  border-radius: 125rpx;
+}
 .picker{
   margin:80rpx 0 0 0;
   width: 80%;

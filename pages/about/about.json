@@ -1,1 +1,8 @@
-{}
+{
+  "navigationBarBackgroundColor": "#83D6F9",
+  "backgroundColor": "#83D6F9",
+  "window": {
+    "navigationBarTitleText": "关于我们",
+    "enablePullDownRefresh": false
+  }
+}

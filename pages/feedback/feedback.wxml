@@ -1,0 +1,21 @@
+<!--pages/feedback/feedback.wxml-->
+<import src="../../template/toast/toast.wxml" />
+<template is="toast" data="{{..._toast_}}" />
+
+<view class='container'>
+  <form class='feedform' bindsubmit="feedback">
+    <textarea class='content' maxlength='500' placeholder="你遇到的问题或者你的改进意见" name="content" />
+    <view class='contact'>
+    <text  class='label'>手机号</text>
+    <input name='phone' class='phone'></input>
+    </view>
+    <button class='feedbackbtn' form-type="submit"> 提交 </button>
+  </form>
+  <view class='gg'>
+  <view class='divider'></view>
+  <view class='tips'>苏州大学wakeup俱乐部出品</view>
+  <view class='tips'>愿你不辜负每一个清晨</view>
+    <view class='divider'></view>
+    </view>
+      <view class='bg'> </view>
+</view>
