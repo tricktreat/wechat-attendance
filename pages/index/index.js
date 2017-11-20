@@ -23,7 +23,10 @@ Page({
   },
 
   onLoad: function () {
-
+    wx.showLoading({
+      title: '请稍后',
+      mask: true
+    })
     // 设置信息之后更新全局用户信息到index界面
     if (app.globalData.userInfo) {
       this.setData(
@@ -43,9 +46,15 @@ Page({
           userInfo: res,
           hasUserInfo: true
         })
+        
       }
+      wx.hideLoading()
+    }
+    app.stop=res=>{
+      wx.hideLoading()
     }
     new app.ToastPannnel.ToastPannnel()
+    
   },
 
   iamstudent: () => {
@@ -263,6 +272,7 @@ ani:function(opa){
 
   },
   onShow: function () {
+
     //第一次注册成功时更新全局用户数据
     if (!this.data.userInfo && app.globalData.userInfo) {
       this.setData({ userInfo: app.globalData.userInfo ,hasUserInfo:true})

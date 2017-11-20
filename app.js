@@ -39,31 +39,16 @@ App({
                     success: res => {
                       if (this.userInfoReadyCallback) {
                         this.userInfoReadyCallback(res.data.data)
-                      } else{
-                        wx.showToast({
-                          duration:1000,
-                          icon: 'loading',
-                          title: '后台服务器太烂了',
-                          success: setTimeout(() => {
-                            this.userInfoReadyCallback(res.data.data)
-                          }, 1000)
-                        })
-                      }
+                      } 
                     }
                   })
-                } else if (res.data.data){
-                  if (this.userInfoReadyCallback) {
+                } else if (res.data.data &&this.userInfoReadyCallback) {
                     this.userInfoReadyCallback(res.data.data)
+                   
                   } else {
-                    wx.showToast({
-                      icon: 'loading',
-                      title: '请重新启动',
-                      success: setTimeout(()=>{
-                        this.userInfoReadyCallback(res.data.data)
-                      },1000)
-                    })
+                    this.stop()
                   }
-                }
+                
               }
             })
           }

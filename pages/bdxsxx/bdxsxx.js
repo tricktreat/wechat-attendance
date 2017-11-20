@@ -47,6 +47,7 @@ Page({
       data: e.detail.value,
       url: "/user/updateWXUser",
       success: res => {
+        console.log(res)
         if (res.data.state!=200){
           this.show(res.data.message)
         }else{

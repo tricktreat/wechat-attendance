@@ -21,8 +21,11 @@ page{
 }
 
 .userinfo{
+  height: 100%;
+  z-index: 0;
     display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
 }
 .bgim{
@@ -47,10 +50,12 @@ page{
 .nickname {
   z-index: 9;
   top: 320rpx;
+  margin: auto;
   position: absolute;
 }
 
 .motto {
+ margin: auto;
    z-index: 9;
   top: 370rpx;
   position: absolute;
