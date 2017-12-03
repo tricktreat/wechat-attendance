@@ -76,7 +76,7 @@
     <view class="box">
       <view class='header'>{{kcinfos[kcindex].kcmc}}</view>
       <scroll-view scroll-y='true' class='scrollview'>
-        <view class='itemsigned' wx:for="{{notsignstudent}}">
+        <view class='itemsigned' wx:for="{{notsignstudent}}" bindtap='dq' data-xh='{{item.id}}' data-index='{{index}}'>
           <view class='id'>
             {{index+1}}
           </view>

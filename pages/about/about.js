@@ -62,5 +62,24 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  open:function(res){
+    wx.showLoading({
+      title: '下载文件中',
+      mask:true
+    })
+    wx.downloadFile({
+      url: 'http://115.159.58.187/files/file.txt',
+      success: function (res) {
+        var filePath = res.tempFilePath
+        wx.hideLoading()
+        wx.openDocument({
+          filePath: filePath,
+          success: function (res) {
+            console.log('打开文档成功')
+          }
+        })
+      }
+    })
   }
 })

@@ -242,7 +242,7 @@ ani:function(opa){
             console.log(dis, e.data.rows[0].distancelimit)
             if (e.data.rows[0].distancelimit < dis) {
               wx.hideLoading()
-              this.show("签到失败，当前与" + signinckinfo.qddd + "距离为" + res.result.elements[0].distance + "米")
+              this.show("签到失败，请开启gps定位或连接苏大WiFi后再次尝试")
 
             } else {
               ajax.ajax({
@@ -256,7 +256,6 @@ ani:function(opa){
                     wx.showToast({
                       title: e.data.message,
                     })
-                    this.show(res.result.elements[0].distance)
                   } else {
                     wx.hideLoading()
                     this.show(e.data.message)
@@ -424,10 +423,14 @@ ani:function(opa){
 
   //老师选择课程查看签到情况
   confirm: function () {
+    wx.showLoading({
+      mask:true,
+      title: '加载中',
+    })
 this.ani(0.7)
     var kc = this.data.kcinfos[this.data.kcindex]
     ajax.ajax({
-      url: '/kcqd/getKcqdInfosByKch/' + kc.kch,
+      url: 'kcqd/getKcqdInfosByKch/' + kc.kch,
       success: (e) => {
         this.setData({ picker: false, signedstudent: e.data.data })
         ajax.ajax({
@@ -449,8 +452,60 @@ this.ani(0.7)
               }
             }
             this.setData({ notsignstudent: notsignstudent })
+            wx.hideLoading()
           }
         })
+      }
+    })
+
+  },
+  dq:function(e){
+    var kc = this.data.kcinfos[this.data.kcindex]
+    var flag=0
+    for (var j of this.data.userInfo.glkcInfos){
+      if (j.kcInfo.kch == kc.kch){
+        flag=1
+        break
+      }
+    }
+    if(flag==0){
+      return
+    }
+    wx.showModal({
+      title: '确认'+this.data.notsignstudent[e.currentTarget.dataset.index].name+'已经请假？',
+      content: "请确认：\n"+"1.该同学已经请假\n2.该同学正常出勤但无法完成考勤",
+      cancelText:'点错了',
+      confirmText:"确认",
+      confirmColor: "#83D6F9",
+      success:res=>{
+        if (res.confirm){
+          wx.showLoading({
+            title: '代签中',
+            mask: true
+          })
+
+          var signinckinfo = { kch: kc.kch, xh: e.currentTarget.dataset.xh, kcmc: kc.kcmc, qddd: kc.skdd }
+          ajax.ajax({
+            url: "/kcqd/signIn",
+            data: signinckinfo,
+            header: { "content-type": "application/json" },
+            method: 'POST',
+            success: (e) => {
+              if (e.data.state == 200) {
+                wx.hideLoading()
+                wx.showToast({
+                  mask: true,
+                  title: e.data.message,
+                })
+                this.confirm()
+              } else {
+                wx.hideLoading()
+                this.show(e.data.message)
+              }
+            }
+          })
+       }
+
       }
     })
 

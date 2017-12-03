@@ -1,2 +1,2 @@
 <!--pages/about/about.wxml-->
-<view>占坑。暂时未开发</view>
+<button bindtap='open'>哒哒哒</button>
